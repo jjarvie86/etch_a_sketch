@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    
+    .container {
+     display: grid;
+     margin: 0 auto;
+     text-align: center;
+      float: center;
+     grid-template-columns: repeat (16, 2fr);
+      grid-template-rows: repeat (16, 2fr);
+      border: 3px solid black;
+      height: 600px;
+      width: 600px;
+      
+    }
+    
+    .square {
+      float: left;
+      background-color: white;
+
+    }
+
+    
+    .header {
+      display: block;
+      text-align: center;
+      background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+    color: transparent;
+    font-family: monospace;
+    font-size: 50px;
+      
+      
+    }
+    
+    .buttons {
+     
+      float: center;
+        text-align: center;
+        width: 100%;
+
+      
+    }
+    
+    .buttonBlack {
+      font-size: 24px;
+      color: white;
+      background-color: black;
+      padding: 14px 40px;
+      min-width: 50px;
+      
+    }
+    
+    .buttonRainbow {
+      font-size: 24px;
+      color: white;
+      background-color: #ff00ff;
+      padding: 14px 40px;
+      min-width: 50px;
+    }
+    
+    
+    
+    
+  </style>
+<head>
+<title>Etch-a-Sketch</title>
+</head>
+<body>
+  
+  <div class="header">
+    <p>Etch-a-sketch</p>
+    </div>
+    
+    <br>
+
+    <div class = buttons>
+    <button id="black" class="buttonBlack">Black</button>
+    <button id="rainbow" class="buttonRainbow">Rainbow</button>
+     </div>
+     
+     
+         <br>
+             <br>
+
+
+     
+  
+  
+  <div class="container">
+    
+  </div>
+  
+
+
+ <script>
+   
+   const container = document.querySelector(".container");
+   
+   const buttonBlack = document.querySelector(".buttonBlack");
+   buttonBlack.addEventListener("click",clearGridBlack);
+   
+   const buttonRainbow = document.querySelector(".buttonRainbow");
+   buttonRainbow.addEventListener("click",clearGridRainbow);
+   
+      function newGridRainbow () {
+     
+     var gridSize = window.prompt("How many squares? ");
+     
+     for (let j=0; j <gridSize; j++){
+     
+     for (let i=0; i <gridSize; i++) {
+     
+     const square  = document.createElement("div");
+     square.classList.add("square");
+     square.attributes.width = 600/gridSize
+     square.attributes.length = 600/gridSize
+     square.addEventListener("mouseover", function(){
+       changeClassRainbow(square);
+     })
+     container.appendChild(square);
+   }
+     }
+  
+  container.style.gridTemplateRows = `repeat(${gridSize}, 2fr)`;
+   container.style.gridTemplateColumns = `repeat(${gridSize}, 2fr)`;
+   
+  };
+  
+
+  
+  function clearGridRainbow() {
+			container.innerHTML = '';
+			newGridRainbow();
+			
+  }
+     
+
+  
+   function changeClassRainbow(square){
+     
+     var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    
+     
+     square.style.backgroundColor = randomColor;
+     console.log(randomColor)
+   }
+   
+   
+
+   
+   function newGridBlack () {
+     
+     var gridSize = window.prompt("How many squares? ");
+     
+     let gridArea = gridSize * gridSize;
+     
+     for (let j=0; j <gridSize; j++){
+     
+     for (let i=0; i <gridSize; i++) {
+     
+     const square  = document.createElement("div");
+     square.classList.add("square");
+     square.attributes.width = 600/gridSize
+     square.attributes.length = 600/gridSize
+     square.addEventListener("mouseover", function(){
+       changeClassBlack(square);
+     })
+     container.appendChild(square);
+   }
+     }
+  
+  container.style.gridTemplateRows = `repeat(${gridSize}, 2fr)`;
+   container.style.gridTemplateColumns = `repeat(${gridSize}, 2fr)`;
+   
+  };
+  
+
+  
+  function clearGridBlack() {
+			container.innerHTML = '';
+			newGridBlack();
+			
+  }
+     
+
+  
+   function changeClassBlack(square){
+     square.style.backgroundColor = "gray"
+   }
+   
+   
+   
+   
+   
+  
+  newGridBlack();
+  
+
+
+  
+
+  </script>
+  
+
+
+</body>
+
+
+ 
+  
+  </html>
+  
